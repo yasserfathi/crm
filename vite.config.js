@@ -1,33 +1,22 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+// This Will Enable TreeShacking
 import vuetify from 'vite-plugin-vuetify';
+import removePreloads from './removePreloads'
 
+const ASSET_URL = process.env.ASSET_URL || '';
 
 export default defineConfig({
-    plugins: [
-        laravel({
-            input: [
-                'resources/scss/app.scss',
-                'resources/js/app.js',
-            ],
-            refresh: true,
-        }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
-        vuetify({ autoImport: true }), // Enabled by default
-    ],
-    resolve: {
-        alias: {
-            '@': '/resources/js',
-            'ziggy': '/vendor/tightenco/ziggy/src/js',
-            'ziggy-vue': '/vendor/tightenco/ziggy/src/js/vue'
-        },
-    },
+  base: `${ASSET_URL}/build/`,
+  plugins: [
+    laravel({
+      publicDirectory: 'public',
+      input: 'resources/js/app.js',
+      refresh: true,
+    }),
+    vue(),
+    vuetify(),
+    removePreloads(),
+  ],
 });

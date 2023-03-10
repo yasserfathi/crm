@@ -14,7 +14,7 @@
             <v-sheet min-height="45vh" rounded="lg">
                 <v-container>
                   <v-row>
-                    
+
                     <v-col
                       cols="6"
                       class="mt-10"
@@ -81,11 +81,11 @@
                   </v-card>
                   </v-col>
 
-                  
+
                   </v-row>
 
                   <v-row>
-                    
+
                     <v-col
                       cols="6"
                       class="mt-10"
@@ -152,7 +152,7 @@
                   </v-card>
                   </v-col>
 
-                  
+
                   </v-row>
                 </v-container>
             </v-sheet>

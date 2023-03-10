@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,12 @@ Route::get('/', function () {
     return Inertia::render('Auth/Login', [
         'canLogin' => Route::has('login'),
     ]);
+});
+
+Route::get('/clear-cache', function() {
+    Artisan::call('view:cache');
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
 });
 
 require __DIR__.'/auth.php';
